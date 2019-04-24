@@ -1,7 +1,16 @@
 package beans;
 
 public class Ingredient {
-    String nom;
+    private Number id;
+    private String nom;
+
+    public Number getId() {
+        return id;
+    }
+
+    public void setId(Number id) {
+        this.id = id;
+    }
 
     public String getNom() {
         return nom;

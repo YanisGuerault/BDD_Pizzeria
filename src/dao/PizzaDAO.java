@@ -17,6 +17,7 @@ public class PizzaDAO {
             Pizza newPizza = new Pizza();
             while(result.next())
             {
+                newPizza.setId(result.getBigDecimal("id"));
                 newPizza.setNom(result.getString("nom")); //fetch the values present in database
                 newPizza.setPrix(result.getBigDecimal("prix"));
             }
@@ -37,6 +38,7 @@ public class PizzaDAO {
             while(result.next())
             {
                 Pizza newPizza = new Pizza();
+                newPizza.setId(result.getBigDecimal("id"));
                 newPizza.setNom(result.getString("nom")); //fetch the values present in database
                 newPizza.setPrix(result.getBigDecimal("prix"));
                 pizzaList.add(newPizza);
@@ -52,7 +54,7 @@ public class PizzaDAO {
 
     public static ArrayList<Ingredient> getPizzaIngredients(Pizza pizza)
     {
-        ResultSet result = DBConnection.makeRequest("select ingredient.nom from ingredient " +
+        ResultSet result = DBConnection.makeRequest("select ingredient.id,ingredient.nom from ingredient " +
                 "join preparer on ingredient.id = preparer.id_ingredient " +
                 "join pizza on preparer.id_pizza = pizza.id " +
                 "where pizza.nom = '"+pizza.getNom()+"'");
@@ -63,6 +65,7 @@ public class PizzaDAO {
             while(result.next())
             {
                 Ingredient ingredient = new Ingredient();
+                ingredient.setId(result.getBigDecimal("id"));
                 ingredient.setNom(result.getString("nom")); //fetch the values present in database
                 IngredientList.add(ingredient);
             }
@@ -80,5 +83,20 @@ public class PizzaDAO {
         Pizza newpizza = new Pizza();
         newpizza.setNom(pizza);
         return getPizzaIngredients(newpizza);
+    }
+
+    public static void insertPizza(Pizza pizza)
+    {
+        DBConnection.makeRequest("INSERT INTO pizza(nom,prix) VALUES ('"+pizza.getNom()+"',"+pizza.getPrix()+")");
+    }
+
+    public static void insertPizza(Pizza pizza,ArrayList<Ingredient> ingredients)
+    {
+        insertPizza(pizza);
+        Pizza newpizza = getPizzaByName(pizza.getNom());
+        for(Ingredient ingredient : ingredients)
+        {
+            DBConnection.makeRequest("INSERT INTO preparer VALUES ("+newpizza.getId()+","+ingredient.getId()+")");
+        }
     }
 }
