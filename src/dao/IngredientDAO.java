@@ -12,7 +12,7 @@ public class IngredientDAO {
 
     public static Ingredient getIngredientByName(String name)
     {
-        ResultSet result = DBConnection.makeRequest("select * from ingredient where nom='"+name+"'");
+        ResultSet result = DBConnection.makeRequestSelect("select * from ingredient where nom='"+name+"'");
 
         try {
             Ingredient newIngredient = new Ingredient();
@@ -31,7 +31,7 @@ public class IngredientDAO {
     }
 
     public static ArrayList<Ingredient> getIngredientList() {
-        ResultSet result = DBConnection.makeRequest("select * from ingredient");
+        ResultSet result = DBConnection.makeRequestSelect("select * from ingredient");
 
         ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
         try {

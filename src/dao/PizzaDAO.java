@@ -11,7 +11,7 @@ public class PizzaDAO {
 
     public static Pizza getPizzaByName(String name)
     {
-        ResultSet result = DBConnection.makeRequest("select * from pizza where nom='"+name+"'");
+        ResultSet result = DBConnection.makeRequestSelect("select * from pizza where nom='"+name+"'");
 
         try {
             Pizza newPizza = new Pizza();
@@ -31,7 +31,7 @@ public class PizzaDAO {
     }
 
     public static ArrayList<Pizza> getPizzaList() {
-        ResultSet result = DBConnection.makeRequest("select * from pizza");
+        ResultSet result = DBConnection.makeRequestSelect("select * from pizza");
 
         ArrayList<Pizza> pizzaList = new ArrayList<Pizza>();
         try {
@@ -54,7 +54,7 @@ public class PizzaDAO {
 
     public static ArrayList<Ingredient> getPizzaIngredients(Pizza pizza)
     {
-        ResultSet result = DBConnection.makeRequest("select ingredient.id,ingredient.nom from ingredient " +
+        ResultSet result = DBConnection.makeRequestSelect("select ingredient.id,ingredient.nom from ingredient " +
                 "join preparer on ingredient.id = preparer.id_ingredient " +
                 "join pizza on preparer.id_pizza = pizza.id " +
                 "where pizza.nom = '"+pizza.getNom()+"'");
@@ -87,7 +87,7 @@ public class PizzaDAO {
 
     public static void insertPizza(Pizza pizza)
     {
-        DBConnection.makeRequest("INSERT INTO pizza(nom,prix) VALUES ('"+pizza.getNom()+"',"+pizza.getPrix()+")");
+        DBConnection.makeRequestInsert("INSERT INTO pizza(nom,prix) VALUES ('"+pizza.getNom()+"',"+pizza.getPrix()+")");
     }
 
     public static void insertPizza(Pizza pizza,ArrayList<Ingredient> ingredients)
@@ -96,7 +96,7 @@ public class PizzaDAO {
         Pizza newpizza = getPizzaByName(pizza.getNom());
         for(Ingredient ingredient : ingredients)
         {
-            DBConnection.makeRequest("INSERT INTO preparer VALUES ("+newpizza.getId()+","+ingredient.getId()+")");
+            DBConnection.makeRequestInsert("INSERT INTO preparer VALUES ("+newpizza.getId()+","+ingredient.getId()+")");
         }
     }
 }

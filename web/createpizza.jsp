@@ -12,8 +12,9 @@
 </head>
 <body>
 <form method="post" action="CreatePizza">
-    <input type="text" id="pizzaname" placeholder="Le nom de la pizza"></input>
-    <select multiple>
+    <input type="text" id="pizzaname" name="pizzaname" placeholder="Le nom de la pizza"></input>
+    <input type="number" id="prix" name="prix" placeholder="Prix"></input>
+    <select name="ingredients" multiple>
         <c:forEach var="ingredient" items="${ingredients}">
             <option value="${ingredient.nom}">${ingredient.nom}</option>
         </c:forEach>

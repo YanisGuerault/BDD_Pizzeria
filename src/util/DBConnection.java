@@ -22,7 +22,7 @@ public class DBConnection {
         return con;
     }
 
-    public static ResultSet makeRequest(String request)
+    public static ResultSet makeRequestSelect(String request)
     {
         Connection con = null;
         Statement statement = null;
@@ -37,6 +37,22 @@ public class DBConnection {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public static void makeRequestInsert(String request)
+    {
+        Connection con = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            con = DBConnection.createConnection(); //establishing connection
+            statement = con.createStatement(); //Statement is used to write queries. Read more about it.
+            statement.executeUpdate(request); //Here table name is users and userName,password are columns. fetching all the records and storing in a resultSet.
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
