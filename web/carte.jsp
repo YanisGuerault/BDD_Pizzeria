@@ -10,7 +10,6 @@
   <head>
     <title>PIZZA !</title>
     <link rel="stylesheet" type="text/css" href="css/edit-table.css" />
-    <script type="text/javascript" src="js/edit-table.js"> </script>
   </head>
   <body>
 

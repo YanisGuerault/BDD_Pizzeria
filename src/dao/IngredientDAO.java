@@ -10,21 +10,17 @@ import java.util.ArrayList;
 
 public class IngredientDAO {
 
-    public static Ingredient getIngredientByName(String name)
-    {
-        ResultSet result = DBConnection.makeRequestSelect("select * from ingredient where nom='"+name+"'");
+    public static Ingredient getIngredientByName(String name) {
+        ResultSet result = DBConnection.makeRequestSelect("select * from ingredient where nom='" + name + "'");
 
         try {
             Ingredient newIngredient = new Ingredient();
-            while(result.next())
-            {
+            while (result.next()) {
                 newIngredient.setId(result.getBigDecimal("id"));
                 newIngredient.setNom(result.getString("nom")); //fetch the values present in database
             }
             return newIngredient;
-        }
-        catch(SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -35,17 +31,14 @@ public class IngredientDAO {
 
         ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
         try {
-            while(result.next())
-            {
+            while (result.next()) {
                 Ingredient newIngredient = new Ingredient();
                 newIngredient.setId(result.getBigDecimal("id"));
                 newIngredient.setNom(result.getString("nom")); //fetch the values present in database
                 ingredientList.add(newIngredient);
             }
             return ingredientList;
-        }
-        catch(SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }

@@ -4,6 +4,7 @@ import beans.Ingredient;
 import beans.Pizza;
 import dao.IngredientDAO;
 import dao.PizzaDAO;
+import util.DBConnection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,13 +32,15 @@ public class CreatePizzaServlet extends HttpServlet {
 
         PizzaDAO.insertPizza(pizza,ingredients);
 
-        this.getServletContext().getRequestDispatcher("/createpizza.jsp").forward(request,response);
+        DBConnection.clearConnections();
+
+        doGet(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Ingredient> ingredients = IngredientDAO.getIngredientList();
         request.setAttribute("ingredients",ingredients);
+        DBConnection.clearConnections();
         this.getServletContext().getRequestDispatcher("/createpizza.jsp").forward(request,response);
-        System.out.print(request);
     }
 }

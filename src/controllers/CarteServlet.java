@@ -3,6 +3,7 @@ package controllers;
 import beans.Ingredient;
 import beans.Pizza;
 import dao.PizzaDAO;
+import util.DBConnection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +31,7 @@ public class CarteServlet extends HttpServlet {
         }
 
         request.setAttribute("listPizza",list);
+        DBConnection.clearConnections();
         this.getServletContext().getRequestDispatcher("/carte.jsp").forward(request,response);
     }
 }

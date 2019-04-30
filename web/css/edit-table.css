@@ -23,7 +23,7 @@ body {
 }
 
 .wrap {
-    width: 800px;
+    width: 1200px;
     margin: 0 auto;
     text-align: left;
     color: #989A8F;
@@ -31,7 +31,7 @@ body {
 
 .table {
     background-color: #ffffff;
-    height: 325px;
+    height: 100%;
     width: 100%;
     margin-top: 50px;
 }
