@@ -6,26 +6,16 @@ import java.util.Date;
 
 public class Commande {
     private Number id;
-    private String nom;
-    private String prenom;
     private Date dateLivraison;
     private Number prix;
-    private Time tempsLivraison;
+    private Number tempsLivraison;
     private Livreur livreur;
     private Vehicule vehicule;
     private ArrayList<Pizza> listPizza;
     private Client client;
 
-    public String getNom() {
-        return nom;
-    }
-
     public Number getId() {
         return id;
-    }
-
-    public String getPrenom() {
-        return prenom;
     }
 
     public Number getPrix() {
@@ -40,7 +30,7 @@ public class Commande {
         return livreur;
     }
 
-    public Time getTempsLivraison() {
+    public Number getTempsLivraison() {
         return tempsLivraison;
     }
 
@@ -60,14 +50,6 @@ public class Commande {
         this.id = id;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
     public void setPrix(Number prix) {
         this.prix = prix;
     }
@@ -80,7 +62,7 @@ public class Commande {
         this.livreur = livreur;
     }
 
-    public void setTempsLivraison(Time tempsLivraison) {
+    public void setTempsLivraison(Number tempsLivraison) {
         this.tempsLivraison = tempsLivraison;
     }
 

@@ -107,12 +107,13 @@ public class CommandeDAO {
                 newCommande.setId(result.getBigDecimal("id"));
                 newCommande.setDateLivraison(result.getDate("date_livraison")); //fetch the values present in database
                 newCommande.setPrix(result.getBigDecimal("prix"));
-                newCommande.setTempsLivraison(result.getTime("temps_livraison"));
+                newCommande.setTempsLivraison(result.getBigDecimal("temps_livraison"));
                 newCommande.setClient(CommandeDAO.getClientCommande(newCommande));
                 newCommande.setListPizza(CommandeDAO.getPizzaCommande(newCommande));
                 newCommande.setLivreur(CommandeDAO.getLivreurCommande(newCommande));
                 newCommande.setVehicule(CommandeDAO.getVehiculeCommande(newCommande));
                 commandeList.add(newCommande);
+                System.out.print(newCommande);
             }
             return commandeList;
         } catch (SQLException e) {
