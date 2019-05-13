@@ -11,7 +11,8 @@ import java.util.ArrayList;
 public class VehiculeDAO {
 
     public static Vehicule getVehiculeByPlaque(String plaque) {
-        String requete = "select * from vehicule where plaque=" + plaque;
+        String requete = "select * from vehicule where plaque='" + plaque+"'";
+        System.out.print(requete);
 
         ResultSet result = DBConnection.makeRequestSelect(requete);
 
@@ -31,8 +32,8 @@ public class VehiculeDAO {
 
     public static TypeVehicule getTypeVehiculeOfVehicule(Vehicule vehicule) {
         String requete = "select * from vehicule " +
-                "join type_vehicule on type_vehicule.id = vehicule.id_type" +
-                "where vehicule.plaque=" + vehicule.getPlaque();
+                "join type_vehicule on type_vehicule.id = vehicule.id_type " +
+                "where vehicule.plaque='" + vehicule.getPlaque()+"'";
 
         ResultSet result = DBConnection.makeRequestSelect(requete);
 

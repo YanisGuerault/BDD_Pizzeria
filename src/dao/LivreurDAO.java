@@ -12,11 +12,11 @@ public class LivreurDAO {
     public static Livreur getLivreurByName(String firstname, String lastname) {
         String requete = "select * from livreur where ";
         if (firstname != "" && lastname != "") {
-            requete += "nom=" + lastname + " and prenom=" + firstname;
+            requete += "nom='" + lastname + "' and prenom='" + firstname+"'";
         } else if (firstname != "") {
-            requete += "prenom=" + firstname;
+            requete += "prenom='" + firstname+"'";
         } else {
-            requete += "nom=" + lastname;
+            requete += "nom='" + lastname+"'";
         }
 
         ResultSet result = DBConnection.makeRequestSelect(requete);

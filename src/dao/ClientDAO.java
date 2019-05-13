@@ -13,13 +13,14 @@ public class ClientDAO {
     public static Client getClientByName(String firstname, String lastname) {
         String requete = "select * from client where ";
         if (firstname != "" && lastname != "") {
-            requete += "nom=" + lastname + " and prenom=" + firstname;
+            requete += "nom='" + lastname + "' and prenom='" + firstname+"'";
         } else if (firstname != "") {
-            requete += "prenom=" + firstname;
+            requete += "prenom='" + firstname+"'";
         } else {
-            requete += "nom=" + lastname;
+            requete += "nom='" + lastname+"'";
         }
 
+        System.out.print(requete);
         ResultSet result = DBConnection.makeRequestSelect(requete);
 
         try {
