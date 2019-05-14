@@ -13,11 +13,11 @@ public class ClientDAO {
     public static Client getClientByName(String firstname, String lastname) {
         String requete = "select * from client where ";
         if (firstname != "" && lastname != "") {
-            requete += "nom='" + lastname + "' and prenom='" + firstname+"'";
+            requete += "nom='" + lastname + "' and prenom='" + firstname+"';";
         } else if (firstname != "") {
-            requete += "prenom='" + firstname+"'";
+            requete += "prenom='" + firstname+"';";
         } else {
-            requete += "nom='" + lastname+"'";
+            requete += "nom='" + lastname+"';";
         }
 
         System.out.print(requete);
@@ -29,7 +29,7 @@ public class ClientDAO {
                 newClient.setId(result.getBigDecimal("id"));
                 newClient.setNom(result.getString("nom"));
                 newClient.setPrenom(result.getString("prenom"));
-                newClient.setSolde(result.getInt("prenom"));//fetch the values present in database
+                newClient.setSolde(result.getInt("solde"));//fetch the values present in database
             }
             return newClient;
         } catch (SQLException e) {

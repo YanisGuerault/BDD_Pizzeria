@@ -61,6 +61,9 @@ public class DBConnection {
         }
     }
 
+    public static void makeRequestInsert(String request) {
+        makeRequestInsert(request,true);
+    }
     public static void clearConnections()
     {
         for(Connection con : connections)

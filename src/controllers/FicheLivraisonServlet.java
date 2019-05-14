@@ -14,6 +14,10 @@ import java.util.ArrayList;
 @WebServlet("/FicheLivraison")
 public class FicheLivraisonServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Integer id_commande = Integer.parseInt(request.getParameter("fiche_livraison"));
+        Commande commande = CommandeDAO.getCommandeByID(id_commande);
+        request.setAttribute("commande",commande);
+        doGet(request,response);
 
     }
 

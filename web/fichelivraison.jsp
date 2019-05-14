@@ -14,13 +14,25 @@
   <script src="js/fiche_livraison.js"></script>
 </head>
 <body>
-<form method="post" action="CreatePizza">
+<form method="post" action="FicheLivraison">
   <legend><span class="number">1</span> Export des fiches de livraisons</legend>
-  <select id="fiche_livraison" onchange="OnChange()">
+  <select id="fiche_livraison" name="fiche_livraison" onchange="OnChange()">
     <c:forEach var="commande" items="${ commandList }">
       <option value="${commande.id}">${commande.dateLivraison}</option>
     </c:forEach>
   </select>
+  <button type="submit">Valider</button>
+  <label>Date Livraison : ${commande.dateLivraison}</label>
+  <label>Prix Commande : ${commande.prix}</label>
+  <label>Pizza : </label>
+  <c:forEach var="pizza" items="${ commande.listPizza }">
+    <label>${pizza.nom}</label>
+  </c:forEach>
+  <label>Temps Livraison : ${commande.tempsLivraison}</label>
+  <label>Client : ${commande.client.nom} ${commande.client.prenom}</label>
+  <label>Livreur : ${commande.livreur.nom} ${commande.livreur.prenom}</label>
+  <label>Type Véhicule : ${commande.vehicule.typeVehicule.libelle}</label>
+  <label>Véhicule : ${commande.vehicule.plaque}</label>
 </form>
 </body>
 </html>
