@@ -132,4 +132,23 @@ public class CommandeDAO {
             return null;
         }
     }
+
+    public static void insertCommande(Commande commande) {
+        String requete = "INSERT INTO commande(prix,temps_livraison,date_livraison,id_livreur,id_vehicule,id_client) VALUES " +
+                "('" + commande.getPrix() + "',"
+                + commande.getTempsLivraison() + ","
+                +"'"+ commande.getDateLivraison() + "',"
+                + commande.getLivreur().getId() + ","
+                + commande.getVehicule().getId() + ","
+                + commande.getClient().getId() + ")";
+
+        System.out.print(requete);
+        int id = DBConnection.makeRequestInsert(requete);
+
+        for(Pizza pizza : commande.getListPizza()) {
+            DBConnection.makeRequestInsert("INSERT INTO preparercommander(id_pizza,id_commande) VALUES " +
+                    "('" + pizza.getId() + "',"
+                    + id + ")");
+        }
+    }
 }

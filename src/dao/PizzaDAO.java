@@ -9,6 +9,24 @@ import util.DBConnection;
 
 public class PizzaDAO {
 
+    public static Pizza getPizzaByID(int id) {
+        ResultSet result = DBConnection.makeRequestSelect("select * from pizza where id=" + id + ";");
+
+        try {
+            Pizza newPizza = new Pizza();
+            while (result.next()) {
+                newPizza.setId(result.getBigDecimal("id"));
+                newPizza.setNom(result.getString("nom")); //fetch the values present in database
+                newPizza.setPrix(result.getBigDecimal("prix"));
+                newPizza.setListIngredient(PizzaDAO.getPizzaIngredients(newPizza));
+            }
+            return newPizza;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static Pizza getPizzaByName(String name) {
         ResultSet result = DBConnection.makeRequestSelect("select * from pizza where nom='" + name + "'");
 

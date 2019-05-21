@@ -9,6 +9,24 @@ import java.util.ArrayList;
 
 public class LivreurDAO {
 
+    public static Livreur getLivreurByID(int id) {
+        String requete = "select * from livreur where id="+id+";";
+        ResultSet result = DBConnection.makeRequestSelect(requete);
+
+        try {
+            Livreur newLivreur = new Livreur();
+            while (result.next()) {
+                newLivreur.setId(result.getBigDecimal("id"));
+                newLivreur.setNom(result.getString("nom"));
+                newLivreur.setPrenom(result.getString("prenom"));//fetch the values present in database
+            }
+            return newLivreur;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static Livreur getLivreurByName(String firstname, String lastname) {
         String requete = "select * from livreur where ";
         if (firstname != "" && lastname != "") {

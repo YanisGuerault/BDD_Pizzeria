@@ -44,7 +44,7 @@ public class DBConnection {
         }
     }
 
-    public static void makeRequestInsert(String request,Boolean toListConnection)
+    public static int makeRequestInsert(String request,Boolean toListConnection)
     {
         Connection con = null;
         Statement statement = null;
@@ -53,16 +53,26 @@ public class DBConnection {
         try {
             con = DBConnection.createConnection(toListConnection); //establishing connection
             statement = con.createStatement(); //Statement is used to write queries. Read more about it.
-            statement.executeUpdate(request); //Here table name is users and userName,password are columns. fetching all the records and storing in a resultSet.
+            int affectedRows = statement.executeUpdate(request); //Here table name is users and userName,password are columns. fetching all the records and storing in a resultSet.
+
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            int id = 0;
+            if (affectedRows != 0){
+                if (generatedKeys.next()) {
+                    id = generatedKeys.getInt(1);
+                }
+                //connections.remove(con);
+            }
             con.close();
-            //connections.remove(con);
+            return id;
         } catch (SQLException e) {
             e.printStackTrace();
+            return 0;
         }
     }
 
-    public static void makeRequestInsert(String request) {
-        makeRequestInsert(request,true);
+    public static int makeRequestInsert(String request) {
+        return makeRequestInsert(request,true);
     }
     public static void clearConnections()
     {

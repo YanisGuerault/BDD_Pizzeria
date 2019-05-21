@@ -13,19 +13,35 @@
     <link rel="stylesheet" type="text/css" href="css/create-pizza.css" />
 </head>
 <body>
-<form method="post" action="CreatePizza">
-    <legend><span class="number">1</span> Ajout des Pizza en BDD</legend>
-    <input type="text" id="pizzaname" name="pizzaname" placeholder="Le nom de la pizza"></input>
+<form method="post" action="CreateCommande">
+    <legend><span class="number">1</span> Ajout des Commandes</legend>
+    <input type="date" id="date_livraison" name="date_livraison" placeholder="Date de livraison"></input>
+    <input type="time" id="temps_livraison" name="temps_livraison" placeholder="Temps de livraison"></input>
     <input type="number" id="prix" name="prix" placeholder="Prix"></input>
-    <c:forEach var="ingredient" items="${ingredients}">
-        <div class="pretty p-default">
-            <input type="checkbox" name="ingredients" value="${ingredient.nom}"/>
-            <div class="state p-success">
-                <label>${ingredient.nom}</label>
-            </div>
-        </div>
-        <br>
+
+    <select id="livreur" name="livreur">
+    <c:forEach var="livreur" items="${livreurs}">
+        <option value="${livreur.id}">${livreur.nom} ${livreur.prenom}</option>
     </c:forEach>
+    </select>
+
+    <select id="vehicule" name="vehicule">
+        <c:forEach var="vehicule" items="${vehicules}">
+            <option value="${vehicule.id}">${vehicule.typeVehicule.libelle} ${vehicule.plaque}</option>
+        </c:forEach>
+    </select>
+
+    <select id="client" name="client">
+        <c:forEach var="client" items="${clients}">
+            <option value="${client.id}">${client.nom} ${client.prenom}</option>
+        </c:forEach>
+    </select>
+
+    <select id="pizza" name="pizza" multiple>
+        <c:forEach var="pizza" items="${pizzas}">
+            <option value="${pizza.id}">${pizza.nom}</option>
+        </c:forEach>
+    </select>
     <button type="submit">Envoyer</button>
 </form>
 </body>

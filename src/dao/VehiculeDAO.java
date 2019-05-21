@@ -10,6 +10,25 @@ import java.util.ArrayList;
 
 public class VehiculeDAO {
 
+
+    public static Vehicule getVehiculeByID(int id) {
+        String requete = "select * from vehicule where id="+id+";";
+        ResultSet result = DBConnection.makeRequestSelect(requete);
+
+        try {
+            Vehicule newVehicule = new Vehicule();
+            while (result.next()) {
+                newVehicule.setId(result.getBigDecimal("id"));
+                newVehicule.setPlaque(result.getString("plaque"));
+                newVehicule.setTypeVehicule(VehiculeDAO.getTypeVehiculeOfVehicule(newVehicule));
+            }
+            return newVehicule;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static Vehicule getVehiculeByPlaque(String plaque) {
         String requete = "select * from vehicule where plaque='" + plaque+"'";
         System.out.print(requete);
@@ -59,7 +78,7 @@ public class VehiculeDAO {
             while (result.next()) {
                 Vehicule newvehicule = new Vehicule();
                 newvehicule.setId(result.getBigDecimal("id"));
-                newvehicule.setPlaque(result.getString("nom_type")); //fetch the values present in database
+                newvehicule.setPlaque(result.getString("plaque")); //fetch the values present in database
                 newvehicule.setTypeVehicule(VehiculeDAO.getTypeVehiculeOfVehicule(newvehicule));
                 vehiculeslist.add(newvehicule);
             }

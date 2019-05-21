@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,25 +20,36 @@ public class CreateCommandeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Commande commande = new Commande();
 
-        commande.setId(Integer.parseInt(request.getParameter("id")));
         commande.setPrix(Float.parseFloat(request.getParameter("prix")));
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = formatter.format( new Date()   );
-        commande.setDateLivraison(formatter.parse(request.getParameter("date")));
-        commande.setTempsLivraison();
-        commande.setNom(request.getParameter("pizzaname"));
-        pizza.setPrix(Integer.parseInt(request.getParameter("prix")));
-
-        ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
-
-        for(String ingredient : request.getParameterValues("ingredients"))
+        try {
+            commande.setDateLivraison(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("date_livraison")));
+        } catch(ParseException e)
         {
-            Ingredient newIngredient = IngredientDAO.getIngredientByName(ingredient);
-            ingredients.add(newIngredient);
         }
 
-        PizzaDAO.insertPizza(pizza,ingredients);
+        String temps_livraison = request.getParameter("temps_livraison");
+        String[] split_temps_livraison = temps_livraison.split(":");
+
+        commande.setTempsLivraison(Float.parseFloat(split_temps_livraison[0]+"."+split_temps_livraison[1]));
+
+        commande.setLivreur(LivreurDAO.getLivreurByID(Integer.parseInt(request.getParameter("livreur"))));
+
+        commande.setVehicule(VehiculeDAO.getVehiculeByID(Integer.parseInt(request.getParameter("vehicule"))));
+
+        commande.setClient(ClientDAO.getClientByID(Integer.parseInt(request.getParameter("client"))));
+
+        ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
+
+        for(String pizza : request.getParameterValues("pizza"))
+        {
+            Pizza newPizza = PizzaDAO.getPizzaByID(Integer.parseInt(pizza));
+            pizzas.add(newPizza);
+        }
+
+        commande.setListPizza(pizzas);
+
+        CommandeDAO.insertCommande(commande);
 
         DBConnection.clearConnections();
 
