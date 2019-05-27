@@ -1,0 +1,32 @@
+INSERT INTO ingredient(nom) VALUES
+("Jambon"),
+("Fromage"),
+("Champignon"),
+("Oeuf"),
+("Crème Fraiche"),
+("Sauce Tomate"),
+("Saumon Fumé"),
+("Lardons"),
+("Oignons"),
+("Pomme de Terre"),
+("Chorizo"),
+("Poivron"),
+("Thon"),
+("Olives"),
+("Ananas"),
+("Reblochon"),
+("Chèvre"),
+("Origan"),
+("Ail"),
+("Anchois"),
+("Huile d'olive");
+
+INSERT INTO pizza(nom,prix) VALUES
+("Margherita",5),
+("Reine",6),
+("Napolitaine",6.5),
+("Quatre Fromages",6.5),
+("Chorizo",6.5),
+("Orientale",6.5),
+("Calzone",6.5),
+("Marinara",7);

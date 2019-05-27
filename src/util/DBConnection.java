@@ -58,9 +58,8 @@ public class DBConnection {
             ResultSet generatedKeys = statement.getGeneratedKeys();
             int id = 0;
             if (affectedRows != 0){
-                if (generatedKeys.next()) {
-                    id = generatedKeys.getInt(1);
-                }
+                generatedKeys.next();
+                id = generatedKeys.getInt(1);
                 //connections.remove(con);
             }
             con.close();

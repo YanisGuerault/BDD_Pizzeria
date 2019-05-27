@@ -23,7 +23,10 @@ public class CreateCommandeServlet extends HttpServlet {
         commande.setPrix(Float.parseFloat(request.getParameter("prix")));
 
         try {
-            commande.setDateLivraison(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("date_livraison")));
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd"); // New Pattern
+            java.util.Date date = sdf1.parse(request.getParameter("date_livraison")); // Returns a Date format object with the pattern
+            java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
+            commande.setDateLivraison(sqlStartDate);
         } catch(ParseException e)
         {
         }
