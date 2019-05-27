@@ -10,10 +10,19 @@
   <head>
     <title>PIZZA !</title>
     <link rel="stylesheet" type="text/css" href="css/edit-table.css" />
+    <link rel="stylesheet" type="text/css" href="css/navbar.css" />
   </head>
   <body>
 
   <div class="wrap">
+    <div class=""navbar">
+      <ul>
+        <li><a href="Carte">Carte</a></li>
+        <li><a href="CreateCommande">Commande</a></li>
+        <li><a href="FicheLivraison">Livraison</a></li>
+        <li><a href="CreatePizza">Pizza</a></li>
+      </ul>
+    </div>
     <div class="table">
       <ul>
 

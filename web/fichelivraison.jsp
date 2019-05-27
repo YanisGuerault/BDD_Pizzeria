@@ -14,6 +14,14 @@
   <script src="js/fiche_livraison.js"></script>
 </head>
 <body>
+<div class=""navbar">
+<ul>
+  <li><a href="Carte">Carte</a></li>
+  <li><a href="CreateCommande">Commande</a></li>
+  <li><a href="FicheLivraison">Livraison</a></li>
+  <li><a href="CreatePizza">Pizza</a></li>
+</ul>
+</div>
 <form method="post" action="FicheLivraison">
   <legend><span class="number">1</span> Export des fiches de livraisons</legend>
   <select id="fiche_livraison" name="fiche_livraison" onchange="OnChange()">

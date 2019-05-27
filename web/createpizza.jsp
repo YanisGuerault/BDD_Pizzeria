@@ -13,6 +13,14 @@
     <link rel="stylesheet" type="text/css" href="css/create-pizza.css" />
 </head>
 <body>
+<div class=""navbar">
+<ul>
+    <li><a href="Carte">Carte</a></li>
+    <li><a href="CreateCommande">Commande</a></li>
+    <li><a href="FicheLivraison">Livraison</a></li>
+    <li><a href="CreatePizza">Pizza</a></li>
+</ul>
+</div>
 <form method="post" action="CreatePizza">
     <legend><span class="number">1</span> Ajout des Pizza en BDD</legend>
     <input type="text" id="pizzaname" name="pizzaname" placeholder="Le nom de la pizza"></input>
