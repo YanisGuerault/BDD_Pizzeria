@@ -11,7 +11,8 @@ CREATE TABLE IF NOT EXISTS ingredient(
 
 CREATE TABLE IF NOT EXISTS taille(
    id SMALLINT PRIMARY KEY AUTO_INCREMENT,
-   nom VARCHAR(50)
+   nom VARCHAR(50),
+   pourcentage FLOAT(10)
 ) ENGINE InnoDB;
 
 CREATE TABLE IF NOT EXISTS livreur(
@@ -75,3 +76,12 @@ CREATE TABLE IF NOT EXISTS preparercommander(
    FOREIGN KEY (id_pizza) REFERENCES  pizza(id),
    FOREIGN KEY (id_commande) REFERENCES  commande(id)
 ) ENGINE InnoDB;
+
+DELIMITER $$
+CREATE TRIGGER IF NOT EXISTS after_pizza_insert 
+    AFTER INSERT ON pizza
+    FOR EACH ROW 
+BEGIN
+    INSERT INTO tailler(id_pizza, id_taille, prix) VALUES(new.id,1,10);
+END$$
+DELIMITER ;

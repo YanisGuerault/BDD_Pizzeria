@@ -53,7 +53,7 @@ public class DBConnection {
         try {
             con = DBConnection.createConnection(toListConnection); //establishing connection
             statement = con.createStatement(); //Statement is used to write queries. Read more about it.
-            int affectedRows = statement.executeUpdate(request); //Here table name is users and userName,password are columns. fetching all the records and storing in a resultSet.
+            int affectedRows = statement.executeUpdate(request,Statement.RETURN_GENERATED_KEYS); //Here table name is users and userName,password are columns. fetching all the records and storing in a resultSet.
 
             ResultSet generatedKeys = statement.getGeneratedKeys();
             int id = 0;
