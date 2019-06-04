@@ -8,24 +8,32 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>PIZZA !</title>
-    <link rel="stylesheet" type="text/css" href="css/edit-table.css" />
-    <link rel="stylesheet" type="text/css" href="css/navbar.css" />
+    <title>Carte</title>
+    <link rel="stylesheet" href="../css/carte.css">
+    <link href="../js/Carte.js">
   </head>
   <body>
 
   <div class="wrap">
-    <div class=""navbar">
-      <ul>
-        <li><a href="Carte">Carte</a></li>
-        <li><a href="CreateCommande">Commande</a></li>
-        <li><a href="FicheLivraison">Livraison</a></li>
-        <li><a href="CreatePizza">Pizza</a></li>
-      </ul>
-    </div>
-    <div class="table">
-      <ul>
+    <ul>
+      <li><a href="racine.jsp">Accueil</a></li>
+      <li><a href="carte.jsp">Carte</a></li>
+      <li><a href="createcommande.jsp">Commande</a></li>
+      <li><a href="fichelivraison.jsp">Livraison</a></li>
+      <li><a href="createpizza.jsp">Pizza</a></li>
+    </ul>
 
+    <table>
+      <c:forEach var="pizza" items="${ listPizza }">
+      <tr>
+        <td><span>${pizza[0].nom}</span></td>
+        <td><span>${pizza[0].prix}</span></td>
+      </tr>
+      </c:forEach>
+    </table>
+
+    <!--<div class="table">
+      <ul>
         <c:forEach var="pizza" items="${ listPizza }">
         <li>
           <div class="top">
@@ -41,7 +49,7 @@
         </c:forEach>
 
       </ul>
-    </div>
+    </div>-->
   </div>
   </body>
 </html>
