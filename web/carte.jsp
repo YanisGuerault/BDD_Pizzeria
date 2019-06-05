@@ -9,8 +9,8 @@
 <html>
   <head>
     <title>Carte</title>
-    <link rel="stylesheet" href="../css/carte.css">
-    <link href="../js/Carte.js">
+    <link rel="stylesheet" href="/css/Carte.css">
+    <link href="js/Carte.js">
   </head>
   <body>
 
