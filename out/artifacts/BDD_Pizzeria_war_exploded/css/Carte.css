@@ -1,0 +1,85 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background: url("../images/pizzeria.jpg") center fixed no-repeat;
+    background-size: cover;
+}
+
+table {
+    background-size: cover;
+    width: 50%;
+    margin: 1em auto;
+    margin-top: 5%;
+    border: 1px solid #ddd;
+    padding: .3em .6em;
+    table-layout: fixed;
+}
+
+td {
+    padding: 1em 0 0 0;
+    vertical-align: bottom;
+    background-image: radial-gradient(black 1px, white 0px);
+    background-size: 8px 8px;
+    background-repeat: repeat-x;
+    background-position: left bottom;
+}
+
+td span {
+    background-color: #fff;
+    font-size: 20px;
+}
+
+td:first-child {
+    text-align: left;
+    font-weight: 700;
+}
+
+td:first-child span {
+    padding-right: .25em;
+}
+
+td:last-child {
+    text-align: right;
+    width: 3em;
+}
+
+td:last-child span {
+    padding-left: .25em;
+}
+
+
+/*NAVBAR*/
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+/* Change the link color to #111 (black) on hover */
+
+li a:hover {
+    background-color: #111;
+}
+
+li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
