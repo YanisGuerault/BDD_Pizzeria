@@ -82,6 +82,17 @@ CREATE TRIGGER IF NOT EXISTS after_pizza_insert
     AFTER INSERT ON pizza
     FOR EACH ROW 
 BEGIN
-    INSERT INTO tailler(id_pizza, id_taille, prix) VALUES(new.id,1,10);
+	DECLARE resultat int(100) DEFAULT 0;
+    DECLARE total text DEFAULT "";
+    DECLARE fin BOOLEAN DEFAULT 0;
+    DECLARE c2 CURSOR FOR
+    	SELECT id
+    	FROM taille;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin = TRUE;
+    OPEN c2;
+    REPEAT
+        FETCH c2 INTO resultat;
+        INSERT INTO tailler(id_pizza,id_taille,prix)VALUES(new.id,resultat,resultat);
+   UNTIL fin END REPEAT;
+    CLOSE c2;
 END$$
-DELIMITER ;
