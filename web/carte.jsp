@@ -16,9 +16,9 @@
 
   <div class="wrap">
     <ul>
-      <li><a href="racine.jsp">Accueil</a></li>
-      <li><a href="carte.jsp">Carte</a></li>
-      <li><a href="createcommande.jsp">Commande</a></li>
+      <li><a href="index">Accueil</a></li>
+      <li><a href="Carte">Carte</a></li>
+      <li><a href="createCommande">Commande</a></li>
       <li><a href="fichelivraison.jsp">Livraison</a></li>
       <li><a href="createpizza.jsp">Pizza</a></li>
     </ul>
