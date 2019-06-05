@@ -10,7 +10,7 @@
   <head>
     <title>Carte</title>
     <link rel="stylesheet" href="/css/Carte.css">
-    <link href="js/Carte.js">
+    <link href="/js/Carte.js">
   </head>
   <body>
 
