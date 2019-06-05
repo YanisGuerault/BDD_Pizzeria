@@ -42,5 +42,6 @@
   <label>Type Véhicule : ${commande.vehicule.typeVehicule.libelle}</label>
   <label>Véhicule : ${commande.vehicule.plaque}</label>
 </form>
+</div>
 </body>
 </html>

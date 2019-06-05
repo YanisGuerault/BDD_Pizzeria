@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" />
     <link rel="stylesheet" type="text/css" href="css/create-pizza.css" />
 </head>
-<body>
+<div>
 <div class=""navbar">
 <ul>
     <li><a href="Carte">Carte</a></li>
@@ -36,5 +36,6 @@
     </c:forEach>
     <button type="submit">Envoyer</button>
 </form>
+</div>
 </body>
 </html>
