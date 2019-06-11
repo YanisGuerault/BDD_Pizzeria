@@ -4,82 +4,53 @@ body {
     background-size: cover;
 }
 
-table {
-    background-size: cover;
-    width: 50%;
-    margin: 1em auto;
-    margin-top: 5%;
-    border: 1px solid #ddd;
-    padding: .3em .6em;
-    table-layout: fixed;
+.ribbon{
+    display: flex;
+    justify-content: center;
 }
 
-td {
-    padding: 1em 0 0 0;
-    vertical-align: bottom;
-    background-image: radial-gradient(black 1px, white 0px);
-    background-size: 8px 8px;
-    background-repeat: repeat-x;
-    background-position: left bottom;
-}
-
-td span {
-    background-color: #fff;
-    font-size: 20px;
-}
-
-td:first-child {
-    text-align: left;
-    font-weight: 700;
-}
-
-td:first-child span {
-    padding-right: .25em;
-}
-
-td:last-child {
-    text-align: right;
-    width: 3em;
-}
-
-td:last-child span {
-    padding-left: .25em;
-}
-
-
-/*NAVBAR*/
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-li {
-    float: left;
-}
-
-li a {
+.menu-body {
+    max-width: 680px;
+    margin: 70px auto;
     display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+    color: rgb(92, 92, 92);
+    background-color: white;
 }
 
-
-/* Change the link color to #111 (black) on hover */
-
-li a:hover {
-    background-color: #111;
+.menu-section {
+    margin: 20px;
+    padding: 5px;
 }
 
-li a.active {
-    background-color: #4CAF50;
-    color: white;
+.menu-section-title {
+    font-family: georgia;
+    font-size: 50px;
+    display: block;
+    font-weight:normal;
+    margin: 20px 0;
+    text-align: Center;
+}
+
+.menu-item {
+    margin: 35px 0;
+    font-size: 18px;
+}
+
+.menu-item-name{
+    font-family: helvetica;
+    font-weight: bold;
+    border-bottom: 2px dotted rgb(213, 213, 213);
+}
+
+.menu-item-description {
+    font-style: italic;
+    font-size: .9em;
+    line-height: 1.5em;
+}
+
+.menu-item-price{
+    float: right;
+    font-weight: bold;
+    font-family: arial;
+    margin-top: -22px;
 }

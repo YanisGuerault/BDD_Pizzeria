@@ -7,35 +7,46 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Créer vos pizzas</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/create-pizza.css" />
-</head>
-<div>
-<div class=""navbar">
-<ul>
-    <li><a href="Carte">Carte</a></li>
-    <li><a href="CreateCommande">Commande</a></li>
-    <li><a href="FicheLivraison">Livraison</a></li>
-    <li><a href="CreatePizza">Pizza</a></li>
-</ul>
-</div>
-<form method="post" action="CreatePizza">
-    <legend><span class="number">1</span> Ajout des Pizza en BDD</legend>
-    <input type="text" id="pizzaname" name="pizzaname" placeholder="Le nom de la pizza"></input>
-    <input type="number" id="prix" name="prix" placeholder="Prix"></input>
-    <c:forEach var="ingredient" items="${ingredients}">
-        <div class="pretty p-default">
-            <input type="checkbox" name="ingredients" value="${ingredient.nom}"/>
-            <div class="state p-success">
-                <label>${ingredient.nom}</label>
-            </div>
+
+    <head>
+
+        <title>Créer vos pizzas</title>
+        <link rel="stylesheet" type="text/css" href="css/create-pizza.css" />
+        <link rel="stylesheet" type="text/css" href="css/navbar.css" />
+
+    </head>
+    <body>
+        <div class="ribbon">
+            <a href="index"><span>Accueil</span></a>
+            <a href="Carte" class="active"><span>Carte</span></a>
+            <a href="CreateCommande"><span>Commande</span></a>
+            <a href="FicheLivraison"><span>Livraison</span></a>
+            <a href="CreatePizza"><span>Pizza</span></a>
+
         </div>
-        <br>
-    </c:forEach>
-    <button type="submit">Envoyer</button>
-</form>
-</div>
-</body>
+
+        <div class="formulaire">
+        <form method="post" action="CreatePizza">
+
+            <legend>Ajout des Pizza en BDD</legend>
+
+            <input type="text" id="pizzaname" name="pizzaname" placeholder="Le nom de la pizza">
+            <input type="number" id="prix" name="prix" placeholder="Prix">
+        </br>
+            <div class="ingredient">
+            <c:forEach var="ingredient" items="${ingredients}">
+                </br>
+                        <div>
+                            <input type="checkbox" id="${ingredient.nom}" name="ingredients" style="display: none;" value="${ingredient.nom}"/>
+                            <label for="${ingredient.nom}" class="toggle"><span></span><span style="left: 40px;"> ${ingredient.nom}</span></label></br>
+                        </div>
+                </br>
+            </c:forEach>
+            </div>
+            </br>
+            <button type="submit" class="button">Envoyer</button>
+
+        </form>
+        </div>
+    </body>
 </html>
