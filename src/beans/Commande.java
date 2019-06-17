@@ -11,7 +11,7 @@ public class Commande {
     private Number tempsLivraison;
     private Livreur livreur;
     private Vehicule vehicule;
-    private ArrayList<Pizza> listPizza;
+    private ArrayList<Tailler> listPizza;
     private Client client;
 
     public Number getId() {
@@ -38,7 +38,7 @@ public class Commande {
         return vehicule;
     }
 
-    public ArrayList<Pizza> getListPizza() {
+    public ArrayList<Tailler> getListPizza() {
         return listPizza;
     }
 
@@ -70,7 +70,7 @@ public class Commande {
         this.vehicule = vehicule;
     }
 
-    public void setListPizza(ArrayList<Pizza> listPizza) {
+    public void setListPizza(ArrayList<Tailler> listPizza) {
         this.listPizza = listPizza;
     }
 

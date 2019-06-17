@@ -9,29 +9,42 @@
 <html>
   <head>
     <title>Carte</title>
-    <link rel="stylesheet" type="text/css" href="css/Carte.css" />
-    <!--<script src="/js/Carte.js" />-->
+      <link rel="stylesheet" type="text/css" href="css/Carte.css" />
+      <link rel="stylesheet" type="text/css" href="css/navbar.css" />
   </head>
   <body>
 
-  <div class="wrap">
-    <ul>
-      <li><a href="index">Accueil</a></li>
-      <li><a href="Carte">Carte</a></li>
-      <li><a href="createCommande">Commande</a></li>
-      <li><a href="fichelivraison.jsp">Livraison</a></li>
-      <li><a href="createpizza.jsp">Pizza</a></li>
-    </ul>
+    <div class="ribbon">
+      <a href="index"><span>Accueil</span></a>
+      <a href="Carte" class="active"><span>Carte</span></a>
+      <a href="CreateCommande"><span>Commande</span></a>
+      <a href="FicheLivraison"><span>Livraison</span></a>
+      <a href="CreatePizza"><span>Pizza</span></a>
+    </div>
 
-    <table>
-      <c:forEach var="pizza" items="${ listPizza }">
-      <tr>
-        <td><span>${pizza[0].nom}</span></td>
-        <td><span>${pizza[0].prix}</span></td>
-      </tr>
-      </c:forEach>
-    </table>
+      <div class ="menu-body">
+          <div class="menu-section">
+            <h2 class="menu-section-title">PIZZAS</h2>
+            <div class="menu-item">
+              <c:forEach var="pizza" items="${ listPizza }">
+              <div class="menu-item-name">
+                  <span>${pizza[0].nom}</span>
+              </div>
 
+              <div class="menu-item-price">
+                  <span>${pizza[0].prix}€</span>
+              </div>
+
+              <div class="menu-item-description">
+                  <c:forEach var="ingredient" items="${ pizza[1] }">
+                      ${ingredient.nom}
+                  </c:forEach>
+              </div>
+              </br>
+                </c:forEach>
+            </div>
+          </div>
+      </div>
     <!--<div class="table">
       <ul>
         <c:forEach var="pizza" items="${ listPizza }">

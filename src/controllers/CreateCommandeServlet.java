@@ -42,11 +42,11 @@ public class CreateCommandeServlet extends HttpServlet {
 
         commande.setClient(ClientDAO.getClientByID(Integer.parseInt(request.getParameter("client"))));
 
-        ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
+        ArrayList<Tailler> pizzas = new ArrayList<Tailler>();
 
         for(String pizza : request.getParameterValues("pizza"))
         {
-            Pizza newPizza = PizzaDAO.getPizzaByID(Integer.parseInt(pizza));
+            Tailler newPizza = TaillerDAO.getTaillerByID(Integer.parseInt(pizza));
             pizzas.add(newPizza);
         }
 
@@ -66,7 +66,7 @@ public class CreateCommandeServlet extends HttpServlet {
         ArrayList<Vehicule> vehicules = VehiculeDAO.getVehiculeList();
         request.setAttribute("vehicules",vehicules);
 
-        ArrayList<Pizza> pizzas = PizzaDAO.getPizzaList();
+        ArrayList<Tailler> pizzas = TaillerDAO.getTaillerList();
         request.setAttribute("pizzas",pizzas);
 
         ArrayList<Client> clients = ClientDAO.getClientList();

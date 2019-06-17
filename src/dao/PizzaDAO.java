@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import beans.Ingredient;
 import beans.Pizza;
+import beans.Taille;
+import beans.Tailler;
 import util.DBConnection;
 
 public class PizzaDAO {
@@ -94,7 +96,16 @@ public class PizzaDAO {
     }
 
     public static void insertPizza(Pizza pizza) {
-        DBConnection.makeRequestInsert("INSERT INTO pizza(nom,prix) VALUES ('" + pizza.getNom() + "'," + pizza.getPrix() + ")");
+        int id = DBConnection.makeRequestInsert("INSERT INTO pizza(nom,prix) VALUES ('" + pizza.getNom() + "'," + pizza.getPrix() + ")");
+        pizza.setId(id);
+        for(Taille taille : TailleDAO.getTailleList())
+        {
+            Tailler tailler = new Tailler();
+            tailler.setTaille(taille);
+            tailler.setPizza(pizza);
+            tailler.setPrix((taille.getPourcentage().doubleValue()/100)*pizza.getPrix().doubleValue());
+            TaillerDAO.insertTailler(tailler);
+        }
     }
 
     public static void insertPizza(Pizza pizza, ArrayList<Ingredient> ingredients) {

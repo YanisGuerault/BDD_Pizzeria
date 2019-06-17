@@ -61,9 +61,9 @@ public class CommandeDAO {
     }
 
     public static ArrayList<Pizza> getPizzaCommande(Commande commande) {
-        String requete = "select * from preparercommander " +
-                "join commande on preparercommander.id_commande = commande.id " +
-                "join pizza on preparercommander.id_pizza = pizza.id " +
+        String requete = "select * from commanderpizza " +
+                "join commande on commanderpizza.id_commande = commande.id " +
+                "join pizza on commanderpizza.id_pizza = pizza.id " +
                 "where commande.id=" + commande.getId();
 
         ResultSet result = DBConnection.makeRequestSelect(requete);
@@ -72,6 +72,26 @@ public class CommandeDAO {
             ArrayList<Pizza> pizzaList = new ArrayList<Pizza>();
             while (result.next()) {
                 pizzaList.add(PizzaDAO.getPizzaByName(result.getString("nom")));
+            }
+            return pizzaList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static ArrayList<Tailler> getTaillerCommande(Commande commande) {
+        String requete = "select * from commanderpizza " +
+                "join commande on commanderpizza.id_commande = commande.id " +
+                "join tailler on commanderpizza.id_tailler = tailler.id " +
+                "where commande.id=" + commande.getId();
+
+        ResultSet result = DBConnection.makeRequestSelect(requete);
+
+        try {
+            ArrayList<Tailler> pizzaList = new ArrayList<Tailler>();
+            while (result.next()) {
+                pizzaList.add(TaillerDAO.getTaillerByID(result.getInt("id_tailler")));
             }
             return pizzaList;
         } catch (SQLException e) {
@@ -94,7 +114,7 @@ public class CommandeDAO {
             newCommande.setPrix(result.getBigDecimal("prix"));
             newCommande.setTempsLivraison(result.getBigDecimal("temps_livraison"));
             newCommande.setClient(CommandeDAO.getClientCommande(newCommande));
-            newCommande.setListPizza(CommandeDAO.getPizzaCommande(newCommande));
+            newCommande.setListPizza(CommandeDAO.getTaillerCommande(newCommande));
             newCommande.setLivreur(CommandeDAO.getLivreurCommande(newCommande));
             newCommande.setVehicule(CommandeDAO.getVehiculeCommande(newCommande));
             DBConnection.clearConnections();
@@ -119,7 +139,7 @@ public class CommandeDAO {
                 newCommande.setPrix(result.getBigDecimal("prix"));
                 newCommande.setTempsLivraison(result.getBigDecimal("temps_livraison"));
                 newCommande.setClient(CommandeDAO.getClientCommande(newCommande));
-                newCommande.setListPizza(CommandeDAO.getPizzaCommande(newCommande));
+                newCommande.setListPizza(CommandeDAO.getTaillerCommande(newCommande));
                 newCommande.setLivreur(CommandeDAO.getLivreurCommande(newCommande));
                 newCommande.setVehicule(CommandeDAO.getVehiculeCommande(newCommande));
                 commandeList.add(newCommande);
@@ -144,8 +164,8 @@ public class CommandeDAO {
 
         int id = DBConnection.makeRequestInsert(requete);
 
-        for(Pizza pizza : commande.getListPizza()) {
-            DBConnection.makeRequestInsert("INSERT INTO preparercommander(id_pizza,id_commande) VALUES " +
+        for(Tailler pizza : commande.getListPizza()) {
+            DBConnection.makeRequestInsert("INSERT INTO commanderpizza(id_tailler,id_commande) VALUES " +
                     "('" + pizza.getId() + "',"
                     + id + ")");
         }
