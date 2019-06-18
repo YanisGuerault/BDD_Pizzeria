@@ -162,6 +162,8 @@ public class CommandeDAO {
                 + commande.getVehicule().getId() + ","
                 + commande.getClient().getId() + ")";
 
+        System.out.println(requete);
+
         int id = DBConnection.makeRequestInsert(requete);
 
         for(Tailler pizza : commande.getListPizza()) {

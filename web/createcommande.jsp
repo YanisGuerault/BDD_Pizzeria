@@ -29,8 +29,6 @@
     <input type="date" id="date_livraison" name="date_livraison" placeholder="Date de livraison">
     <label>Temps de livraison :</label>
     <input type="time" id="temps_livraison" name="temps_livraison" placeholder="Temps de livraison">
-    <label>Prix :</label>
-    <input type="number" id="prix" name="prix" placeholder="Prix">
 
     <label>Livreur :</label>
     <select id="livreur" name="livreur">

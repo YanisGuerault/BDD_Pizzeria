@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.Console;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,11 +21,10 @@ public class CreateCommandeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Commande commande = new Commande();
 
-        commande.setPrix(Float.parseFloat(request.getParameter("prix")));
-
         try {
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd"); // New Pattern
             java.util.Date date = sdf1.parse(request.getParameter("date_livraison")); // Returns a Date format object with the pattern
+            System.out.println(date);
             java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
             commande.setDateLivraison(sqlStartDate);
         } catch(ParseException e)
@@ -44,13 +44,18 @@ public class CreateCommandeServlet extends HttpServlet {
 
         ArrayList<Tailler> pizzas = new ArrayList<Tailler>();
 
+        Double prix = 0.0;
+
         for(String pizza : request.getParameterValues("pizza"))
         {
             Tailler newPizza = TaillerDAO.getTaillerByID(Integer.parseInt(pizza));
+            prix += newPizza.getPrix().doubleValue();
             pizzas.add(newPizza);
         }
 
         commande.setListPizza(pizzas);
+
+        commande.setPrix(prix);
 
         CommandeDAO.insertCommande(commande);
 

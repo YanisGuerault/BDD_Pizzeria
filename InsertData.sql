@@ -22,8 +22,8 @@ INSERT INTO ingredient(nom) VALUES
 ("Huile d'olive");
 
 INSERT INTO taille(nom, pourcentage) VALUES
-("Normal",100),
 ("Grosse",125),
+("Normal",100),
 ("Petite",75);
 
 insert into client (nom, prenom, solde) values ('Copnell', 'Krista', 85);

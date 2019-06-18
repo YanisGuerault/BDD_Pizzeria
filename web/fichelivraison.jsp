@@ -48,7 +48,7 @@
     </br></br>
     <label>Pizza : </label>
     <c:forEach var="pizza" items="${ commande.listPizza }">
-      <label>${pizza.nom}</label>
+      <label>${pizza.pizza.nom} - ${pizza.taille.nom}  ||</label>
     </c:forEach>
     </br></br>
     <label>Temps Livraison : ${commande.tempsLivraison}</label>
